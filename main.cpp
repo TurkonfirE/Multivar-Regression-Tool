@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// Samuel Jennings 
+
 int main(int argc, char * argv[]) {
     cout << "Statistical Modeler Program.\n" << std::endl;
 
