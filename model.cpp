@@ -14,7 +14,7 @@ Model::Model(bool verbose, const std::string& filename)
 }
 
 Model::~Model() {
-    // Destructor implementation
+    // Destructor
 }
 
 void Model::make_model() {
@@ -65,9 +65,10 @@ void Model::parseData(const std::string& filename) {
 }
 
 void Model::runAnalyses() {
-
-   
-
+    // Run least squares on different models
+    // Calculate R-squared for each
+    // Keep track of best model
+    // (X^T*X)^-1*X^T*y
     Matrix y;
     for (double val : dataMatrix.output) {
         vector<double> row;
@@ -78,7 +79,6 @@ void Model::runAnalyses() {
     Matrix coefficients_lin, coefficients_quad, coefficients_exp, coefficients_log;
     vector<double> rValues;
 
-    // 1. WRITE A FUNCTION THAT TESTS ALL FORMS
     Matrix lin = transform(dataMatrix, "linear");
     coefficients_lin = leastSquares(lin, y, false);
     Matrix y_predicted_lin = multiply(lin, coefficients_lin);
@@ -143,11 +143,9 @@ void Model::runAnalyses() {
         bestModel = "logarithmic";
         bestCoefficients = coefficients_log;
     }
-    // Run least squares on different models
-    // Calculate R-squared for each
-    // Keep track of best model
 }
 
+// Equation specific output formatting
 void Model::showResults() {
     cout << "\n---------------" << endl;
     cout << "  BEST MODEL" << endl;
@@ -168,11 +166,6 @@ void Model::showResults() {
         else {
             cout << bestCoefficients.data[i][0];
         }
-       
-        //if (i == 0 && (bestModel != "exponential" || bestModel != "linear")) {
-         //   cout << " ";
-        //}
-
         if (bestModel == "linear") {
             if (i != 0) {
                 cout << "*x" << i;
@@ -184,7 +177,7 @@ void Model::showResults() {
         }
         if (bestModel == "quadratic") {
             if (i == 0) {
-                // Do nothing
+                // Nothing
             }
             else if (i <= (bestCoefficients.data.size() - 1) / 2) {
                 cout << "*x" << i;
@@ -223,13 +216,10 @@ void Model::showResults() {
         cout << "\n\nThis model explains " << (bestRSquared * 100) 
         << "% of the variance in the output.\n";
     }
-    // Return/display best model
-    // Show explanation if verbose
-    // Show calculations if verbose
 }
 
 double Model::calculateRSquared(const Matrix& y_actual, const Matrix& y_predicted) {
-    //r^2 = [(Ya * Yp) / (||Ya||*||Yp||)]^2.
+    // r^2 = [(Ya * Yp) / (||Ya||*||Yp||)]^2.
     int n = y_actual.data.size(); // Num of data points
     // Find the mean of y
     double yMean = 0.0;
@@ -244,7 +234,7 @@ double Model::calculateRSquared(const Matrix& y_actual, const Matrix& y_predicte
     double yDevMag = 0.0;
     double yPredDevMag = 0.0;
     double numerator = 0.0;
-    // **** should this be .data[i][0] instead? ****
+    
     for (int i = 0; i < n; ++i) {
         double yDev = y_actual.data[i][0] - yMean;
         double yPDev = y_predicted.data[i][0] - yPMean;
@@ -344,13 +334,11 @@ Model::Matrix Model::transpose(const Matrix& m) {
         vector<double> row;
 
         for (int j = 0; j < m.data.size(); ++j) {
-            // result.data[i][j] = m.data[j][i];
             row.push_back(m.data[j][i]);
         }
 
         result.data.push_back(row);
     }
-    // Your implementation: flip rows and columns
     return result;
 }
 
