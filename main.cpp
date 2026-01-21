@@ -23,15 +23,11 @@ int main(int argc, char * argv[]) {
         { nullptr, 0, nullptr, '\0' }
     };
 
-    // Parse options (starts with '-')
     while (1) {
-        // getopt_long stores the option index here
-  
         int option_index = 0;
 
         int c = getopt_long (argc, argv, "hvf:", long_options, &option_index);
 
-        // End of options
         if (c == -1) break;
 
         switch (c) {
