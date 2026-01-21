@@ -21,8 +21,6 @@ private:
     // Data information
     struct Matrix {
         vector<vector<double>> data;
-        vector<string> colNames;
-        vector<string> rowNames;
         vector<double> output;
     };
 
@@ -35,7 +33,8 @@ private:
     string bestModel;
     double bestRSquared;
     Matrix bestCoefficients;
-    // *** Model operations ***
+
+    // Model operations
     // Parse the data
     void parseData(const string& filename);
 
@@ -48,7 +47,7 @@ private:
     // Find the R Squared value
     double calculateRSquared(const Matrix& y_actual, const Matrix& y_predicted);
 
-    // *** Matrix operations ***
+    // Matrix operations 
     // Perform the least squares analysis
     Matrix leastSquares(const Matrix& input, const Matrix& output, bool exp);
 
