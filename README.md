@@ -10,6 +10,7 @@ A C++ tool that automatically performs multivariate least squares regression ana
 
 ## Usage
 chmod +x modeler
+
 ./modeler -vf data.txt
 
 ## Input Format
