@@ -17,8 +17,11 @@ Space-separated values, one row per line. Last column is the output variable.
 
 ## Example
 1 1 10
+
 2 1 13 
+
 1 2 15
+
 2 2 18
 
 ## Author
