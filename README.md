@@ -1,6 +1,6 @@
 # Multivariable-Statistical-Model-Selection-Tool
-
-Use ./modeler -vf *filename* 
+First, do: chmod +x modeler
+The, use: ./modeler -vf *filename* 
 
 Ex: ./modeler -vf house_prices.txt
 
